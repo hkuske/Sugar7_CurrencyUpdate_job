@@ -7,6 +7,7 @@ $manifest = array (
   'acceptable_sugar_versions' => 
   array (
     0 => '7.*.*',
+    1 => '8.*.*',
   ),
   'acceptable_sugar_flavors' => 
   array (
@@ -22,7 +23,7 @@ $manifest = array (
   'icon' => '',
   'is_uninstallable' => true,
   'name' => 'Currency_Update',
-  'published_date' => '2015-10-01 16:39:59',
+  'published_date' => '2018-10-01 16:39:59',
   'type' => 'module',
   'version' => 151001,
   'remove_tables' => 'false',
