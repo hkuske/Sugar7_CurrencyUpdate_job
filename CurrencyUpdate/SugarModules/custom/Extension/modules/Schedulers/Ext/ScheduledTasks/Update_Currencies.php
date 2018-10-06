@@ -45,7 +45,7 @@ function Update_Currencies() {
 	//Just another way with curl:
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
+	curl_setopt($ch, CURLOPT_URL, "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
 	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv: 1.9.0.8) Gecko/2009032609 Firefox/3.0.8 (.NET CLR 3.5.30729)');
 	if($data = @curl_exec($ch)) {
 		$CURLContent = $data;
