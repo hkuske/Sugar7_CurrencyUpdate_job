@@ -23,16 +23,16 @@
  * This array provides the Schedulers admin interface with values for its "Job"
  * dropdown menu.
  */
-$func = 'Update_Currencies';
+$func = 'Update_Currencies_EUR';
 $job_strings[] = $func;
 $mod_strings['LBL_'.strtoupper($func)] = $func;
 
 /**
  * This is the code for the "Job"
  */
-function Update_Currencies() {
+function Update_Currencies_EUR() {
 //  Version: 02.04.2015
-    $GLOBALS['log']->info('----->Scheduler fired job of type Update_Currencies()');
+    $GLOBALS['log']->info('----->Scheduler fired job of type Update_Currencies_EUR()');
 
     $exc_rates = array();
 	
@@ -83,7 +83,7 @@ function Update_Currencies() {
 	   }
 	}
 
-    $GLOBALS['log']->info('----->Scheduler ended job of type Update_Currencies()');
+    $GLOBALS['log']->info('----->Scheduler ended job of type Update_Currencies_EUR()');
 
     return true;
 }
