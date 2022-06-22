@@ -6,17 +6,12 @@
 $manifest = array (
   'acceptable_sugar_versions' => array (
       'regex_matches' => array(
-        '7.*.*',
-        '8.*.*',
-        '9.*.*',
-        '10.*.*',
+        '12.*.*',
       ),
   ),
   'acceptable_sugar_flavors' => array (
     0 => 'PRO',
-    1 => 'CORP',
-    2 => 'ENT',
-    3 => 'ULT',
+    1 => 'ENT',
   ),
   'readme' => '',
   'key' => '',
@@ -25,9 +20,9 @@ $manifest = array (
   'icon' => '',
   'is_uninstallable' => true,
   'name' => 'Currency_Update_EUR',
-  'published_date' => '2020-04-01 00:00:00',
+  'published_date' => '2022-06-22 00:00:00',
   'type' => 'module',
-  'version' => '202004',
+  'version' => '202206',
   'remove_tables' => 'false',
 );
 

@@ -19,6 +19,8 @@
  *
  */
 
+use GuzzleHttp\Client;
+
 /**
  * This array provides the Schedulers admin interface with values for its "Job"
  * dropdown menu.
@@ -42,18 +44,24 @@ function Update_Currencies_EUR() {
     //$XMLContent=file("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"); 
     //the file is updated daily between 2.15 p.m. and 3.00 p.m. CET 	
 	
-	//Just another way with curl:
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
-	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv: 1.9.0.8) Gecko/2009032609 Firefox/3.0.8 (.NET CLR 3.5.30729)');
-	if($data = @curl_exec($ch)) {
-		$CURLContent = $data;
+    $url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
+	try{
+//		$response = (new ExternalResourceClient())->get($url);
+		$response = (new Client())->get($url);
+	} catch (RequestException $e) {
+		$GLOBALS['log']->fatal("ERROR:".$e->getMessage());
+		throw new \SugarApiExceptionError($e->getMessage());
 	}
-	curl_close($ch);
+	$httpCode = $response->getStatusCode();
+	if ($httpCode >= 400) {
+		$GLOBALS['log']->fatal("STATUS:".$httpCode);
+		throw new \SugarApiExceptionError($httpCode,null,null,$httpCode);
+	}
+
+	$CURLContent = $response->getBody()->getContents();
 	$XMLContent = explode("\n",$CURLContent);
-	$GLOBALS['log']->info("XMLContent=".print_r($XMLContent,true));
-	
+	$GLOBALS['log']->fatal("XMLContent=".print_r($XMLContent,true));
+
     foreach($XMLContent as $line){ 
         if(preg_match("/currency='([[:alpha:]]+)'/",$line,$currencyCode)){ 
             if(preg_match("/rate='([[:graph:]]+)'/",$line,$rate)){ 
